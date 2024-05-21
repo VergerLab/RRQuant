@@ -6,8 +6,8 @@ Image processing workflow for the analysis of Ruthenium red stained Arabidopsis 
   - Fiji
   - MorpholibJ Plugin
 - Procedure:
-- Copy the RRQuant_Workflow_toolset.ijm file to your Fiji "macros/Toolset folder".
-- Access the tools from the right end side of Fiji window ">>" (More tools).
+  - Copy the RRQuant_Workflow_toolset.ijm file to your Fiji "macros/Toolset folder".
+  - Access the tools from the right end side of Fiji window ">>" (More tools).
 
 ## Usage
 1) Acquire large tile stereo microscope images of ruthenium red stained samples.
