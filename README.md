@@ -11,8 +11,10 @@ Image processing workflow for the analysis of Ruthenium red stained Arabidopsis 
 
 ## Usage
 Starting from large tile stereo microscope images of ruthenium red stained samples.
-1) Split large images per genotype/condition, stained/non-stained, replicates (SplitLargeImage.ijm).
-2) Run segmentation with root painter (https://github.com/Abe404/root_painter/tree/master), using our model trained for RR stained hypocotyls segmentation (coming...).
-3) Convert/correct root painter masks (MaskConvert.ijm).
-4) Run staining intensity and morphometrics quantification (RRQuant.ijm).
-5) Analyze data with R (coming...).
+1) Split large images per genotype/condition, stained/non-stained, replicates (__SplitLargeImage.ijm__).
+2) Run segmentation with root painter (https://github.com/Abe404/root_painter/tree/master), using our model trained for RR stained hypocotyls segmentation (__coming...__).
+3) Convert/correct root painter masks (__MaskConvert.ijm__).
+4) Run staining intensity and morphometrics quantification (__RRQuant.ijm__).
+5) Analyze data with R (__coming...__).
+
+All ImageJ Macro (__SplitLargeImage.ijm__, __MaskConvert.ijm__ and __RRQuant.ijm__) are packaged in an imageJ toolset layed out from left to right, but the macro soucres are available in the macros folder.
