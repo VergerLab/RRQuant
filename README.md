@@ -17,4 +17,4 @@ Starting from large tile stereo microscope images of ruthenium red stained sampl
 4) Run staining intensity and morphometrics quantification (__RRQuant.ijm__).
 5) Analyze data with R (__coming...__).
 
-All ImageJ Macro (__SplitLargeImage.ijm__, __MaskConvert.ijm__ and __RRQuant.ijm__) are packaged in an imageJ toolset layed out from left to right, but the macro soucres are available in the macros folder.
+All ImageJ Macro (__SplitLargeImage.ijm__, __MaskConvert.ijm__ and __RRQuant.ijm__) are packaged in an imageJ toolset layed out from left to right, but the individual macro soucres are also available in the macros folder.
