@@ -36,8 +36,9 @@ merged_bysample <- merged_csv %>%
   summarise_all(funs(ifelse(all(is.na(.)), NA, first(na.omit(.)))))
 
 # New data table with only the values of interest: 
-main_table <- subset(merged_bysample, select = c("Genotype", "Staining", "Replicate", "Label", "Sample", "Genotype_staining", "Sample_replicate", "Genotype_replicate", "PixelCount", "Area", "Perimeter", "Circularity", "RRmean_absolute","MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
+main_table <- subset(merged_bysample, select = c("Genotype", "Staining", "Replicate", "Label", "Sample", "Genotype_staining", "Sample_replicate", "Genotype_replicate", "PixelCount", "Area", "Perimeter", "GeodesicDiameter", "AverageThickness", "InscrDisc.Radius", "Circularity", "RRmean_absolute","MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
 
+colnames(main_table)[colnames(main_table) == 'GeodesicDiameter'] <- 'Length'
 
 # add a column to compute the relative staining value of the samples (mean_stained/mean_non stained) 
 # mean of the RRmean of non stained samples for non stained samples per genotype:
@@ -93,9 +94,9 @@ write.csv(main_table, file = file_path, row.names = FALSE, quote = FALSE)
 
 # Sort out the false objects (small segmented things that are not hypocotyls)
 main_table2 <- main_table %>%
-  filter(Staining != "NonStained" & Area >= 1) 
+  filter(Staining != "NonStained" & PixelCount >= 200) 
 
-data_stained <- subset(main_table2, select= c("Genotype", "Replicate", "Genotype_replicate", "RRmean_absolute", "RRmean_relative_NS_genotype", "RRmean_relative_NS_rep", "PixelCount", "Area", "Perimeter", "Circularity", "MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
+data_stained <- subset(main_table2, select= c("Genotype", "Replicate", "Genotype_replicate", "RRmean_absolute", "RRmean_relative_NS_genotype", "RRmean_relative_NS_rep", "PixelCount", "Area", "Perimeter", "Length", "AverageThickness", "InscrDisc.Radius", "Circularity", "MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
 
 ## A second table with only the Stained samples for representation (and use in the RRQuant shiny app) 
 # Define the file name
