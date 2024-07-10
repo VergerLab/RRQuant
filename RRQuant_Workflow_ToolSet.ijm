@@ -215,7 +215,8 @@ macro_source = "https://github.com/VergerLab/RRQuant";
 RR_suffix = "--img.tif"; //RGB ruthenium red staining image
 msk_suffix = "--msk.png"; //Label image from cellpose segmentation
 
-//(###)Smoothing value 
+// Shrinking value (to shrink the labal and avoid potential RR staining quantification from background if label is too wide)
+Shrink = 10; // (pixels; to be adjusted base on pixel size...)
 
 // Measurment parameters (from MorpholibJ):
 Int_Measurments = "mean stddev max min median mode skewness kurtosis numberofvoxels volume neighborsmean neighborsstddev neighborsmax neighborsmin neighborsmedian neighborsmode neighborsskewness neighborskurtosis";
@@ -267,8 +268,7 @@ for (i=0; i<dir_list.length; i++){
 		Morpho_Results = File_name + Morpho_suffix;
 		RRInt_Image = "RRIntensity";
 		lbl_Image = File_name + "--msk-lbl";
-		//(###)SmoothMorpho_Results = File_name + SmoothMorpho_suffix;
-		//(###)Smooth_Image = "SmoothMask";
+		Shrunk_lbl_Image = lbl_Image + "-Erosion";
 		
 		//Write to log txt file
 		File.append("- Sample number: " + s + "\n" + File_name, dir + File.separator + log_file_name);
@@ -299,23 +299,24 @@ for (i=0; i<dir_list.length; i++){
 		selectImage("Result of Saturation");
 		rename(RRInt_Image);
 			    
-		//Open lmask image
+		//Open mask image
 		open(dir + msk_Image);
-		
-		//(###)SmoothMorpho_Results = File_name + SmoothMorpho_suffix;Duplication and smoothing
 		
 		//Connected componnent labeling and apply pixel size
 		selectImage(msk_Image);
 		run("Connected Components Labeling", "connectivity=4 type=[16 bits]");
 		selectImage(lbl_Image);
 		setVoxelSize(pixelWidth, pixelWidth, "1", unit);
+		
+		//Shrunk labels (Duplicate label image with shrinking for RRintensitiy quantification to potentially exclude background measurment)
+		run("Label Morphological Filters", "operation=Erosion radius=" + Shrink + " from_any_label");
 				
 		//Quantifications
 		print("--> Measurments:");
 		
 		//Measure, save and close RR intensity
 		print("    --> RR intensity");
-		run("Intensity Measurements 2D/3D", "input=" + RRInt_Image + " labels=" + lbl_Image + " " + Int_Measurments);
+		run("Intensity Measurements 2D/3D", "input=" + RRInt_Image + " labels=" + Shrunk_lbl_Image + " " + Int_Measurments);
 		saveAs("Results", dir + RR_Results);
 		selectWindow(RR_Results);
 		run("Close");
@@ -327,14 +328,6 @@ for (i=0; i<dir_list.length; i++){
 		saveAs("Results", dir + Morpho_Results);
 		selectWindow(Morpho_Results);
 		run("Close");
-		
-		//(###)Measure, save and close Smooth hypo moprhometrics
-		//(###)print("    --> Smooth Morphometry");
-		//(###)selectImage(//_Image);
-		//(###)run("Analyze Regions", Morpho_Measurments);
-		//(###)saveAs("Results", dir + //);
-		//(###)selectWindow(//);
-		//(###)run("Close");
 				
 		//Close images
 		close("*");
