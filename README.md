@@ -14,7 +14,7 @@ Image processing workflow for the analysis of ruthenium red stained Arabidopsis 
 ## Usage
 Starting from large tile stereo microscope images of ruthenium red stained samples.
 1) Split large images per genotype/condition, stained/non-stained, replicates (__SplitLargeImage.ijm__).
-2) Run segmentation with root painter (https://github.com/Abe404/root_painter/tree/master), using our model trained for RR stained hypocotyls segmentation (__coming...__).
+2) Run segmentation with root painter (https://github.com/Abe404/root_painter/tree/master), using our model trained for RR stained hypocotyls segmentation (__RRQuant_DarkHypo_RPWeight_V1.pkl__).
 3) Convert/correct root painter masks (__MaskConvert.ijm__).
 4) Run staining intensity and morphometrics quantification (__RRQuant.ijm__).
 5) Analyze data with R (__RRQuant_data-table.R__ and __RRQuant_app.R__).
