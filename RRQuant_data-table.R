@@ -39,8 +39,12 @@ merged_bysample <- merged_csv %>%
   group_by(Sample) %>%
   summarise_all(funs(ifelse(all(is.na(.)), NA, first(na.omit(.)))))
 
+# filter out the small objects (below 200 pixels)
+merged_bysample_filtered <- merged_bysample %>%
+  filter(PixelCount >= 200)
+
 # New data table with only the values of interest: 
-main_table <- subset(merged_bysample, select = c("Condition", "Staining", "Replicate", "Label", "Sample", "Condition_staining", "Sample_replicate", "Condition_replicate", "PixelCount", "Area", "Perimeter", "GeodesicDiameter", "AverageThickness", "InscrDisc.Radius", "Circularity", "RRmean_absolute","MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
+main_table <- subset(merged_bysample_filtered, select = c("Condition", "Staining", "Replicate", "Label", "Sample", "Condition_staining", "Sample_replicate", "Condition_replicate", "PixelCount", "Area", "Perimeter", "GeodesicDiameter", "AverageThickness", "InscrDisc.Radius", "Circularity", "RRmean_absolute","MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
 
 colnames(main_table)[colnames(main_table) == 'GeodesicDiameter'] <- 'Length'
 
@@ -51,9 +55,9 @@ main_table$RRmean_NS_Condition <- NA
 genotypes <- unique(main_table$Condition_staining)
 for (genotype in genotypes) {
 # Filter the dataset to include only non-stained samples for the current Condition
-  non_stained_data <- main_table[main_table$Staining == "NonStained" & main_table$Condition_staining == genotype, ]
+  non_stained_data_g <- main_table[main_table$Staining == "NonStained" & main_table$Condition_staining == genotype, ]
 # Calculate the mean intensity for non-stained samples for the current Condition
-  mean_intensity <- sum(non_stained_data$RRmean_absolute) / nrow(non_stained_data)
+  mean_intensity <- sum(non_stained_data_g$RRmean_absolute) / nrow(non_stained_data_g)
 # Add a new column to the original dataset with the calculated mean intensity for the current Condition
   main_table$RRmean_NS_Condition[main_table$Condition_staining == genotype] <- mean_intensity
 }
@@ -63,9 +67,9 @@ main_table$RRmean_NS_rep <- NA
 replicates <- unique(main_table$Sample_replicate)
 for (replicate in replicates) {
 # Filter the dataset to include only non-stained samples for the current Condition
-  non_stained_data <- main_table[main_table$Staining == "NonStained" & main_table$Sample_replicate == replicate, ]
+  non_stained_data_r <- main_table[main_table$Staining == "NonStained" & main_table$Sample_replicate == replicate, ]
 # Calculate the mean intensity for non-stained samples for the current Condition
-  mean_intensity <- sum(non_stained_data$RRmean_absolute) / nrow(non_stained_data)
+  mean_intensity <- sum(non_stained_data_r$RRmean_absolute) / nrow(non_stained_data_r)
 # Add a new column to the original dataset with the calculated mean intensity for the current Condition
   main_table$RRmean_NS_rep[main_table$Sample_replicate == replicate] <- mean_intensity
 }
@@ -98,7 +102,7 @@ write.csv(main_table, file = file_path, row.names = FALSE, quote = FALSE)
 
 # Sort out the false objects (small segmented things that are not hypocotyls)
 main_table2 <- main_table %>%
-  filter(Staining != "NonStained" & PixelCount >= 200) 
+  filter(Staining != "NonStained") 
 
 data_stained <- subset(main_table2, select= c("Condition", "Replicate", "Condition_replicate", "Sample", "RRmean_absolute", "RRmean_relative_NS_Condition", "RRmean_relative_NS_rep", "PixelCount", "Area", "Perimeter", "Length", "AverageThickness", "InscrDisc.Radius", "Circularity", "MaxFeretDiam", "MaxFeretDiamAngle", "Tortuosity"))
 
