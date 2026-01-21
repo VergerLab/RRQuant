@@ -1,0 +1,5 @@
+Label,Mean,StdDev,Max,Min,Median,Mode,Skewness,Kurtosis,NumberOfVoxels,Volume,NeighborsMean,NeighborsStdDev,NeighborsMax,NeighborsMin,NeighborsMedian,NeighborsMode,NeighborsSkewness,NeighborsKurtosis
+1,221.609,26.451,363,51,216,214,1.468,4.378,71772,2847918.656,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN
+2,197.262,44.372,358,0,206,214,-2.078,5.775,62990,2499448.199,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN
+3,208.857,30.680,380,4,207,207,0.822,5.718,81313,3226506.293,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN
+4,229.093,15.312,322,153,227,229,1.964,7.037,49103,1948410.937,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN
