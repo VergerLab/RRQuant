@@ -1,0 +1,4 @@
+Data available here are the ones used in figure 5 of the RRQuant paper. 
+The folder called "quantification-results" contains the csv files obtained at the end of the RRQuant quantification macro (in Fiji or ImageJ). 
+The data tables called RRQuant-analysis-all.csv and RRQuant-analysis-Stained.csv can be used to test the RRQuant shiny app in R. 
+For displaying the same plots as in the paper, use RRQuant-analysis-Stained.csv
