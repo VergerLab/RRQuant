@@ -1,0 +1,19 @@
+CODE REPOSITORY DESCRIPTIONS
+
+1. mask_editor_gui.py
+   A Pygame-based interactive GUI for refining image segmentation masks. It allows 
+   users to manually correct annotations with features such as pan-and-zoom 
+   navigation, variable brush sizes, and undo/redo history. The script includes a 
+   dynamic downscaling engine to efficiently handle high-resolution TIFF imagery.
+
+2. batch_mask_formatter.py
+   A batch processing script designed to format the color of segmentation masks, making them suitable for Rootpainter model training. 
+   It iterates through a directory of images and applies a 
+   brightness threshold to strictly separate background from foreground pixels, 
+   enforcing consistent RGB values across the entire dataset.
+
+3. model_performance_evaluator.py
+   A standalone utility for assessing the accuracy of trained segmentation models. 
+   It loads a saved model state and compares its predictions against a validation 
+   set of manually corrected ground-truth masks to calculate F1 Score, IoU, 
+   Precision, and Recall. (Requires RootPainter utilities).

@@ -1,0 +1,5 @@
+{
+    "model_dir": "path/to/models",
+    "dataset_dir": "path/to/dataset_dir",
+    "seg_dir": "path/to/seg_dir"
+}

@@ -1,0 +1,8 @@
+{
+    "train_annot_dir": "path/to/train_annot_dir",
+    "val_annot_dir": "path/to/val_annot_dir",
+    "dataset_dir": "path/to/dataset_dir",
+    "model_dir": "path/to/model_dir",
+    "log_dir": "path/to/log_dir",
+    "message_dir": "path/to/message_dir"
+}
