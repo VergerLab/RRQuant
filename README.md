@@ -1,6 +1,20 @@
 # RRQuant
 Image processing workflow for the analysis of ruthenium red stained Arabidopsis dark grown hypocotyls.
 
+## Repository content
+- Macros: ImageJ macros.
+    - RRQuant_Workflow_ToolSet.ijm contains all necessary tools for RRQuant steps in ImageJ.
+    - Other .ijm files contain part of the Tool set that can be use individually.
+    - RRQuant_ToolSet_Template.sh generated the toolSet macro file from the individal macros of the RRQuant workflow
+- R_scripts:
+    - Install_R_packages.R is used to install any missing library in R
+    - RRQuant_data-table.R is used to combine the quantification data and organize them to be used in the RRQuant app
+    - RRQuant_app.R is the shiny app used to visualize and easily plot the data.
+- data: contains test data (csv files) to train on using the R scripts and the RRQuant app. Data have been used in Figure 5.
+- models: contains the different versions of the training models used.
+- retraining: contains python scripts and a userguide to retrain the model for RootPainter segmentation
+- RRQuant_protocol-userguide.pdf explains in details the workflow, from seedling growth to imaging, analysis and data visualization.
+
 ## Installation
 - Requirements:
   - Fiji (https://imagej.net/software/fiji/downloads)
