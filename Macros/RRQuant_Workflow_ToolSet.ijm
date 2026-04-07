@@ -220,7 +220,11 @@ Shrink = 10; // (pixels; to be adjusted base on pixel size...)
 
 // Measurment parameters (from MorpholibJ):
 Int_Measurments = "mean stddev max min median mode skewness kurtosis numberofvoxels volume neighborsmean neighborsstddev neighborsmax neighborsmin neighborsmedian neighborsmode neighborsskewness neighborskurtosis";
-Morpho_Measurments = "pixel_count area perimeter circularity euler_number bounding_box centroid equivalent_ellipse ellipse_elong. convexity max._feret oriented_box oriented_box_elong. geodesic tortuosity max._inscribed_disc average_thickness geodesic_elong.";
+Morpho_Measurments = "pixel_count area perimeter circularity euler_number bounding_box centroid equivalent_ellipse ellipse_elong. convexity max._feret_diameter oriented_box oriented_box_elong. geodesic_diameter tortuosity max._inscribed_disc average_thickness geodesic_elong.";
+
+// replace line 27 with the following if MorphoLibJ version 1.6.4: 
+// Morpho_Measurments = "pixel_count area perimeter circularity euler_number bounding_box centroid equivalent_ellipse ellipse_elong. convexity max._feret oriented_box oriented_box_elong. geodesic tortuosity max._inscribed_disc average_thickness geodesic_elong.";
+
 
 // Output paramaters: output file suffixes
 RRInt_suffix = "--RRstaining.csv"; //MorpholibJ Ruthenium red staining measurment (RGB image is transformed into HSL stacks. S and L images are added and to measure color intensity).
